@@ -1,0 +1,30 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `employee_update_insert`(
+IN _empID INT,
+IN _empName VARCHAR(45),
+IN _empCode VARCHAR(45),
+IN _salary INT
+)
+BEGIN
+	IF _empID = 0 THEN
+		INSERT INTO employee(employee_name,employee_code,salary)
+		VALUES (_empName,_empCode,_salary);
+    
+		SET _empID = LAST_INSERT_ID();
+
+	ELSE 
+		UPDATE EMPLOYEE
+        SET 
+			employee_name = _empName,
+			employee_code = _empCode,
+			salary = _salary
+        WHERE 
+			employee_id = _empID;
+		END IF;
+        
+	SELECT 
+		_empID AS 'employee_id',
+        _empName As 'employee_name',
+        _empCode AS 'employee_code',
+        _salary AS 'salary';
+
+END
