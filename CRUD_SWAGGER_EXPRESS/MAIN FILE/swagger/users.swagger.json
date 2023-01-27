@@ -1,0 +1,271 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "CRUD on User Details",
+        "version": "1.0.0",
+        "title": "User API"
+    },
+
+    "schemes": ["http"],
+    "host": "localhost:8080",
+    "basePath": "/api/users",
+    "paths": {
+        "/create": {
+            "post": {
+                "summary": "Create a user",
+                "description": "Create a user with details",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "task object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/userCreation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+                }
+            }
+        },
+        "/view": {
+            "get": {
+                "summary": "Get one/all users",
+                "description": "Get one/all users with details",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "user_name",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Search by User Name"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+                }
+            }
+        },
+        "/view/{id}": {
+            "get": {
+                "summary": "Get a user using ID",
+                "description": "Get a user using ID with details",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Search by User ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+                }
+            }
+        },
+        "/update/{id}": {
+            "put": {
+                "summary": "Update a user using ID",
+                "description": "Update a user using ID with details",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Update by User ID"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "user object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/userCreation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+            }
+        },
+        "/delete/{id}": {
+            "delete": {
+                "summary": "Delete a user using ID",
+                "description": "Delete a user using ID",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Search by User ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+        }
+        },
+        "/delete": {
+            "delete": {
+                "summary": "Delete all users",
+                "description": "Delete all users",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+        }
+        },
+        "/search/user-requests/{id}": {
+            "get": {
+                "summary": "Get a user's requests using ID",
+                "description": "Get a user's requests using ID with details",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Search by User ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+                }
+            }
+        },
+        "/delete/user-requests/user/{id}": {
+            "delete": {
+                "summary": "Delete all reequests of the user using ID",
+                "description": "Delete all reequests of the user using ID",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Delete by User ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+        }
+        }
+    },
+    "definitions": {
+        "usersDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "mobile_number": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "invalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "userCreation": {
+            "type": "object",
+            "properties": {
+                "user_name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "first_name": {
+                    "type": "string"
+                },
+                "last_name": {
+                    "type": "string"
+                },
+                "mobile_number": {
+                    "type": "integer"
+                }
+            }
+        },
+        "responseDef": {
+            "type": "object",
+            "properties": {
+                "200": {
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/usersDetails"
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Invalide status value",
+                    "schema": {
+                        "$ref": "#/definitions/invalidResponse"
+                    }
+                }
+            }
+        }
+    }
+}

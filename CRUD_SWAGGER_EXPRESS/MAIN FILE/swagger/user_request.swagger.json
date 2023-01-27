@@ -1,0 +1,242 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "CRUD on User Requests",
+        "version": "1.0.0",
+        "title": "User Request API"
+    },
+
+    "schemes": ["http"],
+    "host": "localhost:8080",
+    "basePath": "/api/request",
+    "paths": {
+        "/create": {
+            "post": {
+                "summary": "Create a request ",
+                "description": "Create a request with user id",
+                "produces": ["application/json"],
+                "consumes": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "user",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/userRequestCreation"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "request details",
+                        "schema": {
+                            "$ref": "#/definitions/userRequestCreation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+                }
+            }
+        },
+        "/view": {
+            "get": {
+                "summary": "Get one/all requests",
+                "description": "Get one/all requests with request word",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "request",
+                        "schema":{
+                            "type": "string",
+                            "description": "Search by request"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+                }
+            }
+        },
+        "/view/{id}": {
+            "get": {
+                "summary": "Get a request using ID",
+                "description": "Get a request using ID with details",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Search by request ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+                }
+            }
+        },
+        "/update/{id}": {
+            "put": {
+                "summary": "Update a request using ID",
+                "description": "Update a request using ID with details",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Update by Request ID"
+                        }
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Request Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/userRequestCreation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+            }
+        },
+        "/delete/{id}": {
+            "delete": {
+                "summary": "Delete a request using ID",
+                "description": "Delete a request using ID",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Search by Request ID"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+        }
+        },
+        "/delete": {
+            "delete": {
+                "summary": "Delete all requests",
+                "description": "Delete all requests",
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+        }
+        },
+        "/priority-requests": {
+            "get": {
+                "summary": "Get all requests by priority basis",
+                "description": "Use 1 for High and 0 for Low",
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "priority",
+                        "schema":{
+                            "type": "integer",
+                            "description": "Search by Priority type"
+                        }
+                    }
+                ],
+                "responses": {
+                    "schema": {
+                        "$ref": "#/definitions/responseDef"
+                    }
+            }
+        }
+        }
+    },
+    "definitions": {
+        "requestsDetails": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "request": {
+                    "type": "string"
+                },
+                "hasPriority": {
+                    "type": "integer"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "deletedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "invalidResponse": {
+            "type": "object",
+            "properties": {
+                "statusCode": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "userRequestCreation": {
+            "type": "object",
+            "properties": {
+                "request": {
+                    "type": "string"
+                },
+                "hasPriority": {
+                    "type": "integer"
+                }
+            }
+        },
+        "responseDef": {
+            "type": "object",
+            "properties": {
+                "200": {
+                    "description": "successful operation",
+                    "schema": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/userRequestCreation"
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Invalide status value",
+                    "schema": {
+                        "$ref": "#/definitions/invalidResponse"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "e049d0f0-7313-48a2-90da-759cf37e8044",
+		"name": "UserDB Design",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25040077"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create_new_user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"EMPD445\",\n    \"password\": \"Test@123\",\n    \"first_name\": \"Harris\",\n    \"last_name\": \"P\",\n    \"mobile_number\": 9943799437\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{USER_DETAILS}}/create",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{USER_DETAILS}}/search",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_by_user_name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{USER_DETAILS}}/search?user_name=EMPD444",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"search"
+							],
+							"query": [
+								{
+									"key": "user_name",
+									"value": "EMPD444"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{USER_DETAILS}}/view/1",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"view",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_by_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_name\": \"IYI566\",\n    \"password\": \"Test@4879\",\n    \"first_name\": \"Tester3\",\n    \"last_name\": \"A\",\n    \"mobile_number\": \"9354280603\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{USER_DETAILS}}/update/1",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_by_id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{USER_DETAILS}}/delete/1",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_all_users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{USER_DETAILS}}/delete",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_user_request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{USER_DETAILS}}/search/user-requests/1",
+							"host": [
+								"{{USER_DETAILS}}"
+							],
+							"path": [
+								"search",
+								"user-requests",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_user_request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{USER_DETAILS}}delete/user-requests/user/1",
+							"host": [
+								"{{USER_DETAILS}}delete"
+							],
+							"path": [
+								"user-requests",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Request",
+			"item": [
+				{
+					"name": "Create_new_request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"request\": \"Need PC\",\r\n    \"hasPriority\": false,\r\n    \"user_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{User_Request}}/create",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{User_Request}}/view",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"view"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_request_by_search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{User_Request}}/view?request=PC",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"view"
+							],
+							"query": [
+								{
+									"key": "request",
+									"value": "PC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_request_by_id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{User_Request}}/view/1",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"view",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_request_by_id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"request\": \"Need Cam\",\r\n    \"hasPriority\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{User_Request}}/update/1",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_request_by_id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{User_Request}}/delete/1",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_all_request",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{User_Request}}/delete/",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"delete",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get_all_isPriority_requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{User_Request}}/priority-requests?priority=true",
+							"host": [
+								"{{User_Request}}"
+							],
+							"path": [
+								"priority-requests"
+							],
+							"query": [
+								{
+									"key": "priority",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "USER_DETAILS",
+			"value": "http://localhost:8080/api/users"
+		},
+		{
+			"key": "User_Request",
+			"value": "http://localhost:8080/api/request"
+		}
+	]
+}
