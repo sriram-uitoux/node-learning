@@ -14,12 +14,13 @@ const corsOption = {
     origin: "http://localhost:8081"
 };
 
+const options = {};
 
 app.use(express.json());
 app.use(express.urlencoded( {extended:true} ));
 app.use(cors(corsOption));
-app.use('/api-docs-users', swaggerUi.serve, swaggerUi.setup(userSwaggerDocument));
-app.use('/api-docs-requests', swaggerUi.serve, swaggerUi.setup(userRequestSwaggerDocument));
+app.use('/api-docs-users', swaggerUi.serveFiles(userSwaggerDocument, options), swaggerUi.setup(userSwaggerDocument));
+app.use('/api-docs-requests', swaggerUi.serveFiles(userRequestSwaggerDocument, options), swaggerUi.setup(userRequestSwaggerDocument));
 
 users_db.sequelize
             .sync()
